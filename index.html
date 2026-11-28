@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warcraft II Clone</title>
+    <link rel="stylesheet" href="./ui.css" />
+    <script type="module" crossorigin src="./assets/index-B6rZjXGn.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/three-ir21caC6.js">
+  </head>
+  <body>
+    <div id="viewport"></div>
+    <div id="hud">
+      <div id="hud-resources">
+        <span class="res gold" title="Gold">Gold <b id="hud-gold">0</b></span>
+        <span class="res lumber" title="Lumber">Lumber <b id="hud-lumber">0</b></span>
+        <span class="res oil" title="Oil">Oil <b id="hud-oil">0</b></span>
+        <span class="res food" title="Food (upkeep)">Food <b id="hud-food">0/0</b></span>
+      </div>
+      <div id="hud-selection"></div>
+      <div id="hud-orders"></div>
+      <div id="hud-build"></div>
+    </div>
+    <canvas id="minimap" width="160" height="160"></canvas>
+    <div id="hud-quest" style="display:none"></div>
+    <div id="hud-tooltip"></div>
+    <div id="toast"></div>
+    <div id="game-screen"></div>
+  </body>
+</html>

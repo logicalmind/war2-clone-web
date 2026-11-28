@@ -1,0 +1,548 @@
+/* ---- Theme palette: menu/HUD component tokens (orc overrides in Phase-8 block) ---- */
+:root {
+  --btn-face-a: #3a3128;      /* button gradient top */
+  --btn-face-b: #2a231c;      /* button gradient bottom */
+  --btn-face-hi: #453a2c;     /* secondary/mission button gradient top */
+  --btn-face-press: #1d1812;  /* pressed gradient bottom */
+  --btn-border: #6a5a3a;
+  --btn-text: #e8d9a8;
+  --btn-hot: #ffd050;         /* hover/accent */
+  --btn-bevel: rgba(255, 220, 140, 0.18);
+  --btn-glow: rgba(255, 208, 80, 0.25);
+  --menu-panel: #14100c;
+  --menu-border: #6a5a3a;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #101018;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  color: #e8e4d8;
+  user-select: none;
+}
+
+#viewport {
+  position: absolute;
+  inset: 0 0 130px 0;
+}
+
+#viewport canvas {
+  display: block;
+}
+
+#hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 130px;
+  background: linear-gradient(#3a3226, #24201a);
+  border-top: 2px solid #6a5a3a;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+}
+
+#hud-resources {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 130px;
+  font-size: 14px;
+}
+
+.res.gold b { color: #ffd050; }
+.res.lumber b { color: #c8a070; }
+.res.food b { color: #d8d8b0; }
+
+#hud-selection, #hud-orders, #hud-build {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+  background: #1c1a14;
+  border: 1px solid #55482e;
+  border-radius: 4px;
+  padding: 4px;
+  min-height: 114px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#hud-selection { flex: 1; }
+#hud-orders { flex: 1.2; }
+#hud-build {
+  min-width: 150px;
+  max-width: 200px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 3px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* thin themed scrollbar so all build sections stay reachable */
+#hud-build::-webkit-scrollbar { width: 6px; }
+#hud-build::-webkit-scrollbar-track { background: #14120c; border-radius: 3px; }
+#hud-build::-webkit-scrollbar-thumb { background: #6a5a3a; border-radius: 3px; }
+.build-section { display: flex; flex-wrap: wrap; gap: 3px; }
+.build-section + .build-section { border-top: 1px solid #3a3220; padding-top: 3px; }
+
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  padding: 2px;
+  background: #2c2618;
+  border: 1px solid #6a5a3a;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.icon-btn:hover { border-color: #ffd050; }
+.icon-btn canvas { image-rendering: pixelated; }
+.icon-btn.disabled { opacity: 0.35; filter: grayscale(0.8); cursor: not-allowed; }
+.icon-btn.disabled:hover { border-color: #6a5a3a; }
+.icon-btn.spell-btn { color: #cfe0ff; font-size: 12px; font-weight: bold; }
+
+/* text-labelled order buttons (AMove/Patrol/Unload/Stop): auto width so the
+   label never overflows the 34px icon box */
+.order-btn {
+  width: auto;
+  min-width: 0;
+  padding: 0 9px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #ffd050;
+  text-shadow: 0 1px 1px #000;
+  white-space: nowrap;
+  background: linear-gradient(#4a3f26, #2c2618);
+  box-shadow: inset 0 1px 0 rgba(255, 240, 190, 0.18), inset 0 -2px 3px rgba(0, 0, 0, 0.45);
+}
+body[data-theme='orc'] .order-btn { color: #ff9850; }
+/* spell buttons keep the 34px square: two-letter glyph must fit inside it */
+.spell-btn {
+  font-size: 10px;
+  line-height: 1.05;
+  padding: 1px;
+  overflow: hidden;
+}
+
+.portrait {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+}
+.portrait canvas { image-rendering: pixelated; }
+
+.queue {
+  width: 100%;
+  font-size: 11px;
+  color: #b8b090;
+}
+
+#minimap {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 160px;
+  height: 160px;
+  border: 2px solid #6a5a3a;
+  background: #000;
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+
+/* ---- viewport scroll arrows (replace screen-edge scroll) ---- */
+#scroll-arrows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 11; /* above canvas/quest log backdrop, below tooltip/menus */
+}
+.scroll-arrow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0.72;
+  image-rendering: pixelated;
+}
+.scroll-arrow canvas {
+  display: block;
+  width: 40px;
+  height: 40px;
+  image-rendering: pixelated;
+}
+.scroll-arrow:hover { opacity: 1; filter: brightness(1.25); }
+.scroll-arrow.held { opacity: 1; filter: brightness(1.45) saturate(1.2); }
+.scroll-arrow-n  { left: 50%; top: 4px; transform: translateX(-50%); }
+.scroll-arrow-s  { left: 50%; bottom: 4px; transform: translateX(-50%); }
+.scroll-arrow-w  { left: 4px; top: 50%; transform: translateY(-50%); }
+.scroll-arrow-e  { right: 4px; top: 50%; transform: translateY(-50%); }
+.scroll-arrow-nw { left: 4px; top: 4px; }
+/* NE clears the minimap: right 8 + 160 + 2*2 border + 8 gap */
+.scroll-arrow-ne { right: 180px; top: 4px; }
+.scroll-arrow-sw { left: 4px; bottom: 4px; }
+.scroll-arrow-se { right: 4px; bottom: 4px; }
+
+#hud-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  background: #14120c;
+  border: 1px solid #6a5a3a;
+  color: #e8e4d8;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  pointer-events: none;
+  max-width: 340px;
+}
+
+#toast {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  background: #14120c;
+  border: 1px solid #8a7444;
+  color: #ffd050;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.icon-btn { position: relative; }
+.queued {
+  position: absolute;
+  right: 1px;
+  bottom: 0;
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffd050;
+  text-shadow: 0 1px 1px #000;
+  pointer-events: none;
+}
+
+.info-line {
+  width: 100%;
+  font-size: 11px;
+  color: #d8d0b0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.menu-btn {
+  position: absolute;
+  right: 4px;
+  bottom: 182px; /* clear the SE scroll arrow (hud 130 + arrow 4..44px above the viewport bottom) */
+  z-index: 15;
+  width: 28px;
+  height: 24px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+.options-row label { flex: 1; text-align: left; }
+.options-row input[type="range"] { width: 180px; }
+.options-row input[type='range'] { accent-color: var(--btn-hot); }
+
+.save-list { margin: 10px 0; }
+.save-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin: 6px 0;
+  padding: 8px 10px;
+  background: linear-gradient(var(--btn-face-hi), var(--btn-face-b));
+  border: 1px solid var(--btn-border);
+  border-radius: 4px;
+  color: var(--btn-text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+}
+.save-slot:hover { border-color: var(--btn-hot); }
+.save-slot .slot-no { color: var(--btn-hot); font-weight: bold; min-width: 46px; }
+.save-slot .slot-info { flex: 1; color: #b8b090; }
+.save-slot .slot-del {
+  background: none;
+  border: 1px solid var(--btn-border);
+  color: #c04a3a;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+#game-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 12, 0.88);
+}
+
+/* ---- Menu panel + button component (tokens above; orc overrides in Phase-8 block) ---- */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 420px;
+  max-width: 92vw;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 22px 26px 16px;
+  background: var(--menu-panel);
+  border: 2px solid var(--menu-border);
+  border-radius: 6px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 220, 140, 0.07);
+}
+
+.menu h1 {
+  font-size: 40px;
+  color: var(--btn-hot);
+  text-shadow: 0 2px 0 #7a4a10;
+  margin: 0 0 4px;
+}
+.menu h2 { margin: 0 0 4px; color: var(--btn-hot); }
+
+.menu.end h1 { font-size: 52px; }
+
+.menu p { margin: 0; }
+.menu ul { margin: 0; }
+
+.menu .map-pick {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #b8b090;
+}
+
+.menu .big {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 22px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--btn-text);
+  background: linear-gradient(var(--btn-face-a), var(--btn-face-b));
+  border: 1px solid var(--btn-border);
+  border-radius: 4px;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 1px 0 var(--btn-bevel), inset 0 -8px 12px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.12s, color 0.12s, box-shadow 0.12s;
+}
+.menu .big:not(:disabled):hover {
+  border-color: var(--btn-hot);
+  color: var(--btn-hot);
+  box-shadow: inset 0 1px 0 var(--btn-bevel), inset 0 -8px 12px rgba(0, 0, 0, 0.35),
+    0 0 8px var(--btn-glow);
+}
+.menu .big:not(:disabled):active {
+  background: linear-gradient(var(--btn-face-b), var(--btn-face-press));
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.6);
+  transform: translateY(1px);
+}
+.menu .big:focus-visible { outline: 2px solid var(--btn-hot); outline-offset: 2px; }
+.menu .big:disabled { opacity: 0.45; filter: grayscale(0.3); cursor: default; }
+
+/* disclosure rows read as buttons with a gold caret */
+.menu summary.big {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  list-style: none;
+  user-select: none;
+}
+.menu summary.big::-webkit-details-marker { display: none; }
+.menu summary.big::after { content: '▸'; color: var(--btn-hot); font-size: 14px; }
+.menu details[open] > summary.big::after { content: '▾'; }
+
+.menu details.campaign {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.menu .campaign-race {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.menu .campaign-race > b {
+  color: #b8b090;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.menu .mission-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: normal;
+  background: linear-gradient(var(--btn-face-hi), var(--btn-face-b));
+}
+
+.menu select, .options-row select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 236px;
+  max-width: 100%;
+  background-color: #241f18;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--btn-hot) 50%),
+    linear-gradient(135deg, var(--btn-hot) 50%, transparent 50%);
+  background-position: right 12px center, right 7.5px center;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  padding: 5px 26px 5px 9px;
+  font-family: inherit;
+  font-size: 13px;
+}
+.menu select:focus-visible, .options-row select:focus-visible {
+  outline: 2px solid var(--btn-hot);
+  outline-offset: 1px;
+}
+
+.menu .hint { color: #8a8468; font-size: 12px; margin-top: 4px; }
+
+/* ---- Phase 8: quest log, briefing, mission toast ---- */
+#hud-quest {
+  position: fixed;
+  top: 50px; /* clear the NW scroll arrow (4..44px) */
+  left: 8px;
+  z-index: 12;
+  max-width: 320px;
+  background: rgba(20, 18, 12, 0.85);
+  border: 1px solid #6a5a3a;
+  color: #e8e4d8;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+#hud-quest .quest-title { color: #ffd050; font-weight: bold; display: block; margin-bottom: 2px; }
+#toast.mission {
+  font-size: 14px;
+  padding: 10px 18px;
+  border-color: #ffd050;
+  white-space: pre-line;
+  max-width: 640px;
+  text-align: center;
+}
+
+/* ---- Phase 8: map editor ---- */
+#editor-root {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #101018;
+  display: flex;
+  flex-direction: column;
+  color: #e8e4d8;
+  font-size: 12px;
+}
+#editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  background: #1c1a12;
+  border-bottom: 2px solid #6a5a3a;
+}
+#editor-toolbar .sep { width: 1px; align-self: stretch; background: #4a4230; margin: 0 4px; }
+#editor-toolbar label { display: inline-flex; align-items: center; gap: 4px; }
+#editor-toolbar button, #editor-toolbar select {
+  background: #2a2518;
+  color: #e8e4d8;
+  border: 1px solid #6a5a3a;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#editor-toolbar button.on { background: #6a5a3a; color: #fff; }
+#editor-canvas-wrap { flex: 1; overflow: hidden; position: relative; }
+#editor-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+#editor-mission {
+  padding: 6px 8px;
+  background: #16140e;
+  border-top: 1px solid #4a4230;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#editor-mission input[type='text'], #editor-mission textarea {
+  background: #241f14;
+  color: #e8e4d8;
+  border: 1px solid #6a5a3a;
+  padding: 3px 6px;
+  font-size: 12px;
+  font-family: inherit;
+}
+#editor-mission textarea { width: 340px; height: 40px; resize: vertical; }
+#editor-status { color: #8a8468; margin-left: auto; }
+
+/* ---- Phase 8: human/orc HUD theme ---- */
+body[data-theme='orc'] #hud {
+  background: linear-gradient(#3a2622, #241a18);
+  border-top-color: #7a4a34;
+}
+body[data-theme='orc'] #minimap { border-color: #7a4a34; }
+body[data-theme='orc'] .icon-btn:hover,
+body[data-theme='orc'] #hud-tooltip { border-color: #e08040; }
+body[data-theme='orc'] .res.gold b,
+body[data-theme='orc'] #toast { color: #ff9850; border-color: #b06030; }
+body[data-theme='orc'] {
+  --btn-face-a: #38271f;
+  --btn-face-b: #291b15;
+  --btn-face-hi: #46311f;
+  --btn-face-press: #1c110c;
+  --btn-border: #a05a30;
+  --btn-text: #f0c9a0;
+  --btn-hot: #ff9850;
+  --btn-bevel: rgba(255, 190, 120, 0.18);
+  --btn-glow: rgba(255, 152, 80, 0.25);
+  --menu-panel: #140c08;
+  --menu-border: #7a4a34;
+}
+body[data-theme='orc'] .menu h1 { text-shadow: 0 2px 0 #4a1c08; }

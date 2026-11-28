@@ -1,0 +1,213 @@
+{
+  "$comment": "KayKit CC0 assets. Paths are relative to /assets/. Loaded by src/render3d/assets.ts.",
+  "characters": {
+    "base": "characters/",
+    "files": [
+      "Barbarian.glb",
+      "Knight.glb",
+      "Mage.glb",
+      "Rogue.glb",
+      "Rogue_Hooded.glb",
+      "Skeleton_Warrior.glb",
+      "Skeleton_Rogue.glb",
+      "Skeleton_Mage.glb",
+      "Skeleton_Minion.glb"
+    ],
+    "units": {
+      "peasant": "Rogue_Hooded.glb",
+      "peon": "Rogue.glb",
+      "footman": "Knight.glb",
+      "grunt": "Barbarian.glb",
+      "archer": "Rogue.glb",
+      "ranger": "Rogue_Hooded.glb",
+      "knight": "Knight.glb",
+      "paladin": "Knight.glb",
+      "mage": "Mage.glb",
+      "ogre_mage": "Mage.glb",
+      "ogre": "Barbarian.glb",
+      "axethrower": "Barbarian.glb",
+      "berserker": "Barbarian.glb",
+      "sappers": "Barbarian.glb",
+      "sappers_orc": "Barbarian.glb",
+      "death_knight": "Skeleton_Warrior.glb",
+      "skeleton": "Skeleton_Minion.glb"
+    },
+    "scales": {
+      "ogre": 1.5
+    }
+  },
+  "buildings": {
+    "defs": {
+      "town_hall": {
+        "blue": "medieval/buildings/blue/building_market_blue.gltf",
+        "green": "medieval/buildings/green/building_market_green.gltf"
+      },
+      "keep": {
+        "blue": "medieval/buildings/blue/building_home_B_blue.gltf",
+        "green": "medieval/buildings/green/building_home_B_green.gltf"
+      },
+      "castle": {
+        "blue": "medieval/buildings/blue/building_castle_blue.gltf",
+        "green": "medieval/buildings/green/building_castle_green.gltf"
+      },
+      "great_hall": {
+        "blue": "medieval/buildings/blue/building_market_blue.gltf",
+        "green": "medieval/buildings/green/building_market_green.gltf"
+      },
+      "stronghold": {
+        "blue": "medieval/buildings/blue/building_home_B_blue.gltf",
+        "green": "medieval/buildings/green/building_home_B_green.gltf"
+      },
+      "fortress": {
+        "blue": "medieval/buildings/blue/building_castle_blue.gltf",
+        "green": "medieval/buildings/green/building_castle_green.gltf"
+      },
+      "farm": {
+        "blue": "medieval/buildings/blue/building_home_A_blue.gltf",
+        "green": "medieval/buildings/green/building_home_A_green.gltf"
+      },
+      "trap": {
+        "blue": "medieval/buildings/blue/building_home_A_blue.gltf",
+        "green": "medieval/buildings/green/building_home_A_green.gltf"
+      },
+      "barracks": {
+        "blue": "medieval/buildings/blue/building_barracks_blue.gltf",
+        "green": "medieval/buildings/green/building_barracks_green.gltf"
+      },
+      "barracks_orc": {
+        "blue": "medieval/buildings/blue/building_barracks_blue.gltf",
+        "green": "medieval/buildings/green/building_barracks_green.gltf"
+      },
+      "elven_lumber_mill": {
+        "blue": "medieval/buildings/blue/building_lumbermill_blue.gltf",
+        "green": "medieval/buildings/green/building_lumbermill_green.gltf"
+      },
+      "troll_lumber_mill": {
+        "blue": "medieval/buildings/blue/building_lumbermill_blue.gltf",
+        "green": "medieval/buildings/green/building_lumbermill_green.gltf"
+      },
+      "blacksmith": {
+        "blue": "medieval/buildings/blue/building_blacksmith_blue.gltf",
+        "green": "medieval/buildings/green/building_blacksmith_green.gltf"
+      },
+      "blacksmith_orc": {
+        "blue": "medieval/buildings/blue/building_blacksmith_blue.gltf",
+        "green": "medieval/buildings/green/building_blacksmith_green.gltf"
+      },
+      "scout_tower": {
+        "blue": "medieval/buildings/blue/building_tower_base_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_base_green.gltf"
+      },
+      "watch_tower": {
+        "blue": "medieval/buildings/blue/building_tower_base_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_base_green.gltf"
+      },
+      "guard_tower": {
+        "blue": "medieval/buildings/blue/building_tower_A_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_A_green.gltf"
+      },
+      "guard_tower_orc": {
+        "blue": "medieval/buildings/blue/building_tower_A_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_A_green.gltf"
+      },
+      "cannon_tower": {
+        "blue": "medieval/buildings/blue/building_tower_B_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_B_green.gltf"
+      },
+      "cannon_tower_orc": {
+        "blue": "medieval/buildings/blue/building_tower_B_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_B_green.gltf"
+      },
+      "wall": "medieval/buildings/neutral/wall_straight.gltf",
+      "wall_orc": "medieval/buildings/neutral/wall_straight.gltf",
+      "stables": {
+        "blue": "medieval/buildings/blue/building_watermill_blue.gltf",
+        "green": "medieval/buildings/green/building_watermill_green.gltf"
+      },
+      "ogre_mound": {
+        "blue": "medieval/buildings/blue/building_windmill_blue.gltf",
+        "green": "medieval/buildings/green/building_windmill_green.gltf"
+      },
+      "church": {
+        "blue": "medieval/buildings/blue/building_church_blue.gltf",
+        "green": "medieval/buildings/green/building_church_green.gltf"
+      },
+      "altar_storms": {
+        "blue": "medieval/buildings/blue/building_church_blue.gltf",
+        "green": "medieval/buildings/green/building_church_green.gltf"
+      },
+      "mage_tower": {
+        "blue": "medieval/buildings/blue/building_tower_catapult_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_catapult_green.gltf"
+      },
+      "temple_damned": {
+        "blue": "medieval/buildings/blue/building_tower_catapult_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_catapult_green.gltf"
+      },
+      "gnomish_inventor": {
+        "blue": "medieval/buildings/blue/building_windmill_blue.gltf",
+        "green": "medieval/buildings/green/building_windmill_green.gltf"
+      },
+      "goblin_alchemist": {
+        "blue": "medieval/buildings/blue/building_watermill_blue.gltf",
+        "green": "medieval/buildings/green/building_watermill_green.gltf"
+      },
+      "gryphon_aviary": {
+        "blue": "medieval/buildings/blue/building_tower_catapult_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_catapult_green.gltf"
+      },
+      "dragon_roost": {
+        "blue": "medieval/buildings/blue/building_tower_catapult_blue.gltf",
+        "green": "medieval/buildings/green/building_tower_catapult_green.gltf"
+      },
+      "shipyard": {
+        "blue": "medieval/buildings/blue/building_watermill_blue.gltf",
+        "green": "medieval/buildings/green/building_watermill_green.gltf"
+      },
+      "shipyard_orc": {
+        "blue": "medieval/buildings/blue/building_watermill_blue.gltf",
+        "green": "medieval/buildings/green/building_watermill_green.gltf"
+      },
+      "foundry": {
+        "blue": "medieval/buildings/blue/building_mine_blue.gltf",
+        "green": "medieval/buildings/green/building_mine_green.gltf"
+      },
+      "foundry_orc": {
+        "blue": "medieval/buildings/blue/building_mine_blue.gltf",
+        "green": "medieval/buildings/green/building_mine_green.gltf"
+      },
+      "oil_refinery": {
+        "blue": "medieval/buildings/blue/building_mine_blue.gltf",
+        "green": "medieval/buildings/green/building_mine_green.gltf"
+      },
+      "oil_refinery_orc": {
+        "blue": "medieval/buildings/blue/building_mine_blue.gltf",
+        "green": "medieval/buildings/green/building_mine_green.gltf"
+      },
+      "oil_platform": {
+        "blue": "medieval/buildings/blue/building_well_blue.gltf",
+        "green": "medieval/buildings/green/building_well_green.gltf"
+      },
+      "oil_platform_orc": {
+        "blue": "medieval/buildings/blue/building_well_blue.gltf",
+        "green": "medieval/buildings/green/building_well_green.gltf"
+      }
+    },
+    "scaffolding": "medieval/buildings/neutral/building_scaffolding.gltf",
+    "stages": [
+      "medieval/buildings/neutral/building_stage_A.gltf",
+      "medieval/buildings/neutral/building_stage_B.gltf",
+      "medieval/buildings/neutral/building_stage_C.gltf"
+    ],
+    "destroyed": "medieval/buildings/neutral/building_destroyed.gltf"
+  },
+  "props": {
+    "tree": [
+      "medieval/decoration/nature/tree_single_A.gltf",
+      "medieval/decoration/nature/tree_single_B.gltf",
+      "medieval/decoration/nature/trees_A_medium.gltf"
+    ],
+    "gold_mine": "medieval/buildings/blue/building_mine_blue.gltf",
+    "oil_patch": null
+  }
+}
